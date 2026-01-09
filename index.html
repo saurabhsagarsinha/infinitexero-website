@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfiniteXero | Oracle APEX, OCI & AI Consulting</title>
+  <style>
+    :root{
+      --primary:#4f46e5;
+      --secondary:#0f172a;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --accent:#22c55e;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Roboto,Arial,sans-serif}
+    body{background:var(--bg);color:#111827;line-height:1.6}
+
+    header{background:linear-gradient(135deg,#4f46e5,#22c55e);color:#fff}
+    .container{max-width:1200px;margin:auto;padding:24px}
+
+    nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+    nav h2{font-size:26px}
+    nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:600}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;padding:70px 0}
+    .hero h1{font-size:44px;line-height:1.2}
+    .hero p{margin:18px 0;font-size:18px}
+
+    .btn{display:inline-block;background:#fff;color:#4f46e5;padding:12px 22px;border-radius:12px;text-decoration:none;font-weight:700;margin-right:10px}
+    .btn.alt{background:#0f172a;color:#fff}
+
+    section{padding:80px 0}
+    h2{text-align:center;font-size:36px;margin-bottom:12px}
+    .sub{text-align:center;color:#475569;margin-bottom:44px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+    .card{background:var(--card);padding:26px;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
+    .card h3{margin-bottom:10px}
+
+    .highlight{background:#eef2ff}
+
+    .badge{display:inline-block;background:#dcfce7;color:#166534;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:10px}
+
+    /* Contact Form */
+    form{display:grid;gap:14px}
+    input,textarea{padding:12px 14px;border-radius:10px;border:1px solid #cbd5f5;font-size:15px}
+    textarea{resize:vertical;min-height:100px}
+    button{background:var(--accent);color:#022c22;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer}
+    button:hover{opacity:.9}
+
+    .contact{background:#0f172a;color:#fff}
+    .contact .card{background:#020617}
+    .contact a{color:#22c55e}
+
+    footer{background:#020617;color:#94a3b8;text-align:center;padding:18px}
+
+    @media(max-width:850px){
+      .hero{grid-template-columns:1fr}
+      .hero h1{font-size:34px}
+      nav{gap:10px}
+    }
+  </style>
+</head>
+<body>
+
+<header id="home">
+  <div class="container">
+    <nav>
+      <h2>InfiniteXero</h2>
+      <div>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#demos">Demos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <span class="badge">Oracle APEX • OCI • AI</span>
+        <h1>Building Intelligent Cloud Apps with Oracle</h1>
+        <p>InfiniteXero delivers enterprise‑grade applications using Oracle APEX, OCI Cloud and AI — faster, scalable and cost‑effective.</p>
+        <a class="btn" href="#contact">Get Free Consultation</a>
+        <a class="btn alt" href="#demos">View Demos</a>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Expertise Highlights</h3>
+          <ul>
+            <li>✔ Oracle APEX 24.x & PL/SQL</li>
+            <li>✔ OCI Autonomous DB, ORDS, LB, SSL</li>
+            <li>✔ Payment Gateways (UPI, Razorpay)</li>
+            <li>✔ Oracle 23ai Vector Search & Chat</li>
+            <li>✔ ERP, Fusion & OIC Integrations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="container">
+    <h2>Consulting & Development Services</h2>
+    <p class="sub">Complete digital transformation using Oracle ecosystem</p>
+
+    <div class="grid">
+      <div class="card"><h3>Oracle APEX App Development</h3><p>Secure enterprise apps, dashboards, workflows, reporting, PWA enabled solutions.</p></div>
+      <div class="card"><h3>OCI Cloud Architecture</h3><p>Autonomous DB, ORDS, Load Balancer, SSL, domain mapping, monitoring.</p></div>
+      <div class="card"><h3>API & System Integration</h3><p>REST APIs, OAuth, Oracle Integration Cloud, Fusion, 3rd party services.</p></div>
+      <div class="card"><h3>AI & Automation</h3><p>Chatbots, document processing, vector search using Oracle 23ai.</p></div>
+      <div class="card"><h3>UI/UX Modernization</h3><p>Redwood inspired UI, mobile friendly themes, animations.</p></div>
+      <div class="card"><h3>Corporate Training</h3><p>Oracle APEX, SQL, PL/SQL, OCI hands‑on training programs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="highlight">
+  <div class="container">
+    <h2>Ready‑to‑Deploy Solutions</h2>
+    <p class="sub">Accelerate business with proven APEX products</p>
+
+    <div class="grid">
+      <div class="card"><h3>Online Grocery Ordering App</h3><p>Customer app, admin panel, order tracking, UPI payments, PWA notifications.</p></div>
+      <div class="card"><h3>School Management System</h3><p>Admissions, attendance, exams, fees, parent portal.</p></div>
+      <div class="card"><h3>Clinic & Hospital App</h3><p>Appointments, EMR, billing, reports.</p></div>
+      <div class="card"><h3>Payroll & HR Tools</h3><p>Time entry, validation, Fusion payroll integrations.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="demos">
+  <div class="container">
+    <h2>Live Application Demos</h2>
+    <p class="sub">Experience real Oracle APEX solutions</p>
+
+    <div class="grid">
+      <div class="card"><h3>Grocery App Demo</h3><p>Coming soon — live hosted demo.</p></div>
+      <div class="card"><h3>Payroll Automation Demo</h3><p>Coming soon — enterprise workflow showcase.</p></div>
+      <div class="card"><h3>AI Search Demo</h3><p>Coming soon — Oracle 23ai powered app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Start Your Project with InfiniteXero</h2>
+    <p class="sub">Free consultation & solution roadmap</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Contact Details</h3>
+        <p>Email: <a href="mailto:infinitexero.in@gmail.com">infinitexero.in@gmail.com</a></p>
+        <p>We respond within 24 hours.</p>
+      </div>
+
+      <div class="card">
+        <h3>Request Consultation</h3>
+
+        <!-- Free Form Submission using FormSubmit -->
+        <form action="https://formsubmit.co/infinitexero.in@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="New Lead from InfiniteXero Website">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="phone" placeholder="Phone / WhatsApp">
+          <textarea name="message" placeholder="Describe your requirement" required></textarea>
+          <button type="submit">Submit Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 InfiniteXero — Oracle APEX • OCI • AI Consulting
+</footer>
+
+</body>
+</html>
