@@ -60,14 +60,14 @@ nav {
 }
 
 .logo img {
-  height: 46px;
+  height: 24px;
   display: block;
   transition: height 0.3s ease;
 }
 
 @media (max-width: 768px) {
   .logo img {
-    height: 32px;
+    height: 20px;
   }
 }
 .nav-links {
