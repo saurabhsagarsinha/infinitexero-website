@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — InfiniteXero</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC SERVICES STYLE ── */
+    .page-hero {
+      min-height: 35vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 6% 4rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .page-hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #services {
+      background: var(--bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.2rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--accent-blue);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .icon-indigo { background: rgba(99, 102, 241, 0.08); color: var(--accent-purple); }
+    .icon-cyan { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
+    .icon-green { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
+    .icon-amber { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+
+    .service-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .service-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-bullets {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .service-bullets li {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-bullets li::before {
+      content: '✓';
+      color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .service-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .tech-tag {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="index.html">
+      <img src="infinitexero_logo.png" alt="InfiniteXero" style="height: 46px; display: block;" />
+    </a>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact-us.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- PAGE HEADER -->
+  <section class="page-hero">
+    <h1>Our Services</h1>
+    <p>Product Services & Core Engineering Partnerships</p>
+  </section>
+
+  <!-- PRODUCT SERVICES (CLIENT CENTRIC) -->
+  <section id="services" style="padding-bottom: 4rem;">
+    <div class="section-header">
+      <div class="section-eyebrow">Client Support & Care</div>
+      <h2 class="section-title">Support & solutions built around you.</h2>
+      <p class="section-sub">We don't just sell software; we partner with you. Get enterprise-grade stability with the personalized attention of a dedicated success team.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1: 24/7 Support -->
+      <div class="service-card">
+        <div class="service-icon icon-indigo">📞</div>
+        <div class="service-name">24/7 Dedicated Support</div>
+        <p class="service-desc">We keep your operations running smoothly around the clock. Get instant assistance whenever you need it, with zero robotic phone menus.</p>
+        <ul class="service-bullets">
+          <li>SLA-driven critical issue resolution</li>
+          <li>Direct access to a human tech engineer</li>
+          <li>WhatsApp support groups for your team</li>
+        </ul>
+      </div>
+
+      <!-- Service 2: Custom Tailoring -->
+      <div class="service-card">
+        <div class="service-icon icon-cyan">🛠️</div>
+        <div class="service-name">Custom Software Tailoring</div>
+        <p class="service-desc">Every business has unique workflows. We customize our products or build bespoke database modules just for your operations.</p>
+        <ul class="service-bullets">
+          <li>Bespoke dashboard widgets & reports</li>
+          <li>Custom fields & SMS/WhatsApp alerts</li>
+          <li>Third-party system integrations</li>
+        </ul>
+      </div>
+
+      <!-- Service 3: Free Tiers -->
+      <div class="service-card">
+        <div class="service-icon icon-green">🎁</div>
+        <div class="service-name">Limited Free Usage</div>
+        <p class="service-desc">Try before you commit. We offer generous free usage tiers and sandbox environments so you can test drive our systems risk-free.</p>
+        <ul class="service-bullets">
+          <li>Full access to basic operations modules</li>
+          <li>No credit card required to start</li>
+          <li>Easy upgrade paths as your business grows</li>
+        </ul>
+      </div>
+
+      <!-- Service 4: End-to-End Support -->
+      <div class="service-card">
+        <div class="service-icon icon-amber">🛡️</div>
+        <div class="service-name">End-to-End Tech Partnership</div>
+        <p class="service-desc">Leave the technical complexities to us. We handle all hosting, server administration, backups, and security audits for you.</p>
+        <ul class="service-bullets">
+          <li>Cloud hosting & server upkeep managed</li>
+          <li>Daily automated backups & security</li>
+          <li>WhatsApp & payment gateway integrations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL CONSULTING (ENGINEERING EXPERTISE) -->
+  <section id="technical-expertise" style="background: var(--bg-secondary); border-top: 1px solid var(--border); padding-top: 6rem; padding-bottom: 6rem;">
+    <div class="section-header">
+      <div class="section-eyebrow">Technical Consulting</div>
+      <h2 class="section-title">Core Engineering Capabilities</h2>
+      <p class="section-sub">Looking for enterprise database consulting or system integrations? Our team offers deep technical expertise in Oracle systems.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1: Custom APEX App Dev -->
+      <div class="service-card">
+        <div class="service-icon icon-indigo">⚡</div>
+        <div class="service-name">SaaS & APEX Engineering</div>
+        <p class="service-desc">End-to-end design, development, and hosting of custom web applications tailored to your specific operational workflows.</p>
+        <ul class="service-bullets">
+          <li>Custom business portals & ERP extensions</li>
+          <li>Legacy app migration to modern APEX</li>
+          <li>Secure, mobile-ready user interfaces</li>
+        </ul>
+        <div class="service-tech">
+          <span class="tech-tag">Oracle APEX</span>
+          <span class="tech-tag">PL/SQL</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Responsive UI</span>
+        </div>
+      </div>
+
+      <!-- Service 2: OIC Integration -->
+      <div class="service-card">
+        <div class="service-icon icon-cyan">🔗</div>
+        <div class="service-name">Cloud Integration (OIC)</div>
+        <p class="service-desc">Connect your business systems seamlessly. We build custom orchestration and file-based integrations with complete monitoring.</p>
+        <ul class="service-bullets">
+          <li>Oracle SaaS (Fusion) integrations</li>
+          <li>Third-party REST/SOAP API pipelines</li>
+          <li>Error handling & notification setups</li>
+        </ul>
+        <div class="service-tech">
+          <span class="tech-tag">OIC</span>
+          <span class="tech-tag">ORDS</span>
+          <span class="tech-tag">REST / SOAP</span>
+          <span class="tech-tag">FTP / ERP adapters</span>
+        </div>
+      </div>
+
+      <!-- Service 3: Oracle Fusion Consulting -->
+      <div class="service-card">
+        <div class="service-icon icon-green">🏢</div>
+        <div class="service-name">Oracle Fusion ERP Consulting</div>
+        <p class="service-desc">Unlock full value from your Oracle ERP implementation with functional and technical configurations tailored to procurement and finance.</p>
+        <ul class="service-bullets">
+          <li>Procurement & Payables workflows</li>
+          <li>Custom SLA setup & subledger accounting</li>
+          <li>Approval group configurations</li>
+        </ul>
+        <div class="service-tech">
+          <span class="tech-tag">Fusion Cloud</span>
+          <span class="tech-tag">Procurement</span>
+          <span class="tech-tag">Payables</span>
+          <span class="tech-tag">SLA Config</span>
+        </div>
+      </div>
+
+      <!-- Service 4: BI Publisher & Dashboards -->
+      <div class="service-card">
+        <div class="service-icon icon-amber">📊</div>
+        <div class="service-name">Enterprise Reporting & BI</div>
+        <p class="service-desc">Get pixel-perfect reports and automated dashboards that translate raw enterprise data into actionable business intelligence.</p>
+        <ul class="service-bullets">
+          <li>BIP RTF / Excel template designing</li>
+          <li>Automated invoice & PO formatting</li>
+          <li>Cross-module dashboards in APEX</li>
+        </ul>
+        <div class="service-tech">
+          <span class="tech-tag">Oracle BIP</span>
+          <span class="tech-tag">SQL / PL/SQL</span>
+          <span class="tech-tag">XML Data Models</span>
+          <span class="tech-tag">Excel reporting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>InfiniteXero</span>. Proudly bootstrapped in Bangalore, India. 🇮🇳</p>
+  </footer>
+
+</body>
+
+</html>

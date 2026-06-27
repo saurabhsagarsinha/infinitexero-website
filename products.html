@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — InfiniteXero</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC PRODUCTS STYLE ── */
+    .page-hero {
+      min-height: 35vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 6% 4rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .page-hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #products {
+      background: var(--bg);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    /* Color borders for each product card */
+    .product-card.gymos { border-top: 4px solid var(--accent-blue); }
+    .product-card.zarooratwala { border-top: 4px solid var(--accent-green); }
+    .product-card.pgsaathi { border-top: 4px solid var(--accent-yellow); }
+
+    .product-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.25rem;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .gymos .product-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
+    .zarooratwala .product-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
+    .pgsaathi .product-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+
+    .product-status {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .status-live { background: rgba(52, 168, 83, 0.1); color: var(--accent-green); border: 1px solid rgba(52, 168, 83, 0.2); }
+    .status-beta { background: rgba(30, 98, 201, 0.1); color: var(--accent-blue); border: 1px solid rgba(30, 98, 201, 0.2); }
+    .status-building { background: rgba(234, 67, 53, 0.1); color: var(--accent-red); border: 1px solid rgba(234, 67, 53, 0.2); }
+    .status-coming { background: rgba(251, 188, 5, 0.1); color: var(--accent-yellow); border: 1px solid rgba(251, 188, 5, 0.2); }
+
+    .product-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    .product-tagline {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .product-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-features {
+      list-style: none;
+      margin-bottom: 1.75rem;
+      flex-grow: 1;
+    }
+
+    .product-features li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .product-features li::before {
+      content: '✓';
+      font-weight: 700;
+    }
+
+    .gymos .product-features li::before { color: var(--accent-blue); }
+    .zarooratwala .product-features li::before { color: var(--accent-green); }
+    .pgsaathi .product-features li::before { color: var(--accent-yellow); }
+
+    .product-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .tech-tag {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    /* ── FLAGSHIP CARD (BIZSAATHI) ── */
+    .bizsaathi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent-red);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--card-shadow);
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .bizsaathi-card:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .bizsaathi-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(234, 67, 53, 0.08);
+      border: 1px solid rgba(234, 67, 53, 0.2);
+      color: var(--accent-red);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .bizsaathi-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .bizsaathi-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .module-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .module-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .module-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .module-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 768px) {
+      .bizsaathi-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.75rem;
+      }
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="index.html">
+      <img src="infinitexero_logo.png" alt="InfiniteXero" style="height: 46px; display: block;" />
+    </a>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact-us.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- PAGE HEADER -->
+  <section class="page-hero">
+    <h1>Our Products</h1>
+    <p>Integrated Business Software Suites Designed for Scale and Security</p>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="section-header">
+      <div class="section-eyebrow">Suite of Apps</div>
+      <h2 class="section-title">Engineered for real business operations.</h2>
+      <p class="section-sub">Every product is a stand-alone solution that integrates smoothly with other apps in the InfiniteXero ecosystem.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- BIZSAATHI — FEATURED / FLAGSHIP -->
+      <div class="bizsaathi-card">
+        <div class="bizsaathi-details">
+          <div class="featured-badge">⭐ Flagship SaaS</div>
+          <div class="bizsaathi-name">BizSaathi</div>
+          <div class="product-tagline" style="color: var(--accent-red);">Your SME Business Companion</div>
+
+          <p class="bizsaathi-desc">India's simplest compliance and operations manager for retail & SMEs. Automate GST deadline alerts, organize vendor registrations, store crucial compliance documents, and build professional purchase orders—with direct integration to WhatsApp API notifications.</p>
+
+        </div>
+        
+        <div class="module-grid">
+          <div class="module-item">
+            <div class="module-icon">📋</div>
+            <div class="module-name">GST Tracker</div>
+            <div class="module-desc">Filing timelines & auto-reminders</div>
+          </div>
+          <div class="module-item">
+            <div class="module-icon">📁</div>
+            <div class="module-name">Document Vault</div>
+            <div class="module-desc">Licences, certs & expiry alerts</div>
+          </div>
+          <div class="module-item">
+            <div class="module-icon">🤝</div>
+            <div class="module-name">Vendor Register</div>
+            <div class="module-desc">Suppliers, GSTIN & terms register</div>
+          </div>
+          <div class="module-item">
+            <div class="module-icon">📦</div>
+            <div class="module-name">Purchase Orders</div>
+            <div class="module-desc">PO creation, approval & tracking</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GYMOS -->
+      <div class="product-card gymos">
+        <div class="product-icon">🏋️</div>
+
+        <div class="product-name">GymOS</div>
+        <div class="product-tagline" style="color: var(--accent-blue);">Corporate Fitness Platform</div>
+        <p class="product-desc">Enterprise SaaS platform built for operators managing corporate fitness parks. Streamline membership tiers, log attendances, configure Razorpay subscriptions, and compile automated client reports.</p>
+        <ul class="product-features">
+          <li>Member onboarding & digital KYC</li>
+          <li>Attendance & active facility tracking</li>
+          <li>Automated Razorpay recurring billing</li>
+          <li>Corporate reporting and user analytics</li>
+          <li>Multi-facility and park support</li>
+        </ul>
+
+      </div>
+
+      <!-- ZAROORATWALA -->
+      <div class="product-card zarooratwala">
+        <div class="product-icon">🛒</div>
+
+        <div class="product-name">ZarooratWala</div>
+        <div class="product-tagline" style="color: var(--accent-green);">WhatsApp-Native Groceries</div>
+        <p class="product-desc">Specialty regional grocery delivery service targeting Bangalore's diaspora. Offers a WhatsApp-native conversational checkout experience, AI-assisted ordering, and same-day delivery routing.</p>
+        <ul class="product-features">
+          <li>Authentic North Indian specialties</li>
+          <li>Conversational WhatsApp ordering</li>
+          <li>AI-powered products recomendation</li>
+          <li>Real-time automated status reports</li>
+          <li>Same-day logistics integration</li>
+        </ul>
+
+      </div>
+
+      <!-- PG SAATHI -->
+      <div class="product-card pgsaathi">
+        <div class="product-icon">🏠</div>
+
+        <div class="product-name">PG Saathi</div>
+        <div class="product-tagline" style="color: var(--accent-yellow);">Property Management SaaS</div>
+        <p class="product-desc">End-to-end cloud platform designed for Paying Guest (PG) accommodation owners in Bangalore. Streamline tenant records, automate rent collections via WhatsApp dues, and manage bed allocations.</p>
+        <ul class="product-features">
+          <li>Property / Room / Bed hierarchies</li>
+          <li>Digital tenant KYC document vault</li>
+          <li>Automated Razorpay payment links</li>
+          <li>Police verification tracking</li>
+          <li>Maintenance request board</li>
+        </ul>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>InfiniteXero</span>. Proudly bootstrapped in Bangalore, India. 🇮🇳</p>
+  </footer>
+
+</body>
+
+</html>

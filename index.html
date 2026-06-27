@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfiniteXero — Build Without Limits</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC HOME STYLE ── */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 6% 6rem;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 10%, rgba(30, 98, 201, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 85% 85%, rgba(52, 168, 83, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 35% at 15% 75%, rgba(234, 67, 53, 0.04) 0%, transparent 60%);
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-badge {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(30, 98, 201, 0.06);
+      border: 1px solid rgba(30, 98, 201, 0.15);
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-red);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .hero h1 span {
+      color: var(--accent-blue);
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 4rem;
+      justify-content: center;
+      margin-top: 5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+
+    /* ── PRODUCTS OVERVIEW ── */
+    #products-overview {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .products-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .product-overview-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.2rem;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      box-shadow: var(--card-shadow);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-overview-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .product-overview-card.bizsaathi:hover { border-color: var(--accent-red); }
+    .product-overview-card.gymos:hover { border-color: var(--accent-blue); }
+    .product-overview-card.zarooratwala:hover { border-color: var(--accent-green); }
+    .product-overview-card.pgsaathi:hover { border-color: var(--accent-yellow); }
+
+    .product-overview-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .bizsaathi .product-overview-icon { background: rgba(234, 67, 53, 0.08); color: var(--accent-red); }
+    .gymos .product-overview-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
+    .zarooratwala .product-overview-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
+    .pgsaathi .product-overview-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+
+    .product-overview-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .product-overview-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .product-overview-link {
+      color: var(--accent-blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: auto;
+    }
+
+    .bizsaathi .product-overview-link { color: var(--accent-red); }
+    .gymos .product-overview-link { color: var(--accent-blue); }
+    .zarooratwala .product-overview-link { color: var(--accent-green); }
+    .pgsaathi .product-overview-link { color: var(--accent-yellow); }
+
+    /* ── WHY US ── */
+    #why-us {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .value-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.2rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .value-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .value-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT COMPANY ── */
+    #about-company {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .about-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    }
+
+    .founder-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+    }
+
+    .founder-role {
+      color: var(--accent-blue);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .founder-bio {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .exp-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .exp-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--accent-blue);
+    }
+
+    .exp-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 7rem 4% 4rem;
+        min-height: auto;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hero-stats {
+        gap: 1.5rem;
+        flex-direction: column;
+        margin-top: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="index.html">
+      <img src="infinitexero_logo.png" alt="InfiniteXero" style="height: 46px; display: block;" />
+    </a>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact-us.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-mesh"></div>
+    <div class="grid-overlay"></div>
+    <div class="hero-badge">Bootstrapped in Bangalore</div>
+    <h1>Your Business Software,<br /><span>Simplified.</span></h1>
+    <p>InfiniteXero builds integrated, powerful, and affordable SaaS products for India's growing businesses—built to scale, designed to protect your privacy.</p>
+    <div class="hero-actions">
+      <a href="products.html" class="btn-primary">Explore Our Products</a>
+      <a href="contact-us.html" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Years Engineering Leadership</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">SaaS Products in Suite</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">₹0</div>
+        <div class="stat-label">VC Funding — Proudly Bootstrapped</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS OVERVIEW -->
+  <section id="products-overview">
+    <div class="section-header">
+      <div class="section-eyebrow">Explore Our Products</div>
+      <h2 class="section-title">Built for real business needs.</h2>
+      <p class="section-sub">A cohesive suite of applications engineered to streamline compliance, procurement, and operations for SMEs.</p>
+    </div>
+
+    <div class="products-overview-grid">
+      <!-- BizSaathi -->
+      <a href="products.html" class="product-overview-card bizsaathi">
+        <div class="product-overview-icon">📋</div>
+        <h3 class="product-overview-title">BizSaathi</h3>
+        <p class="product-overview-desc">SME compliance & operations platform. Auto-track GST deadlines, manage vendors, and create purchase orders with integrated WhatsApp alerts.</p>
+        <span class="product-overview-link">View Product &rarr;</span>
+      </a>
+
+      <!-- GymOS -->
+      <a href="products.html" class="product-overview-card gymos">
+        <div class="product-overview-icon">🏋️</div>
+        <h3 class="product-overview-title">GymOS</h3>
+        <p class="product-overview-desc">Corporate fitness management software. Streamline KYC, member onboarding, automated subscription billing, and multi-location park reporting.</p>
+        <span class="product-overview-link">View Product &rarr;</span>
+      </a>
+
+      <!-- ZarooratWala -->
+      <a href="products.html" class="product-overview-card zarooratwala">
+        <div class="product-overview-icon">🛒</div>
+        <h3 class="product-overview-title">ZarooratWala</h3>
+        <p class="product-overview-desc">WhatsApp-native hyper-local grocery delivery platform. Providing authentic Bihar specialties to Bangalore's diaspora via conversational AI.</p>
+        <span class="product-overview-link">View Product &rarr;</span>
+      </a>
+
+      <!-- PG Saathi -->
+      <a href="products.html" class="product-overview-card pgsaathi">
+        <div class="product-overview-icon">🏠</div>
+        <h3 class="product-overview-title">PG Saathi</h3>
+        <p class="product-overview-desc">Paying guest accommodation software. Manage rooms, allocate beds, automate rental collections, and track tenant KYC on one dashboard.</p>
+        <span class="product-overview-link">View Product &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us">
+    <div class="section-header">
+      <div class="section-eyebrow">The InfiniteXero Promise</div>
+      <h2 class="section-title">A software partner you can trust.</h2>
+      <p class="section-sub">Inspired by the core values of customer-aligned software design.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-emoji">🔒</div>
+        <h3 class="value-name">Privacy First</h3>
+        <p class="value-desc">We never sell your data or serve third-party ads. Your business metrics and files remain entirely yours and secure.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-emoji">🛠️</div>
+        <h3 class="value-name">Unified Suite</h3>
+        <p class="value-desc">Our software is designed to integrate natively. Flow data smoothly from procurement, to inventory, to communication channels.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-emoji">🇮🇳</div>
+        <h3 class="value-name">Bootstrapped Soul</h3>
+        <p class="value-desc">Based in Bangalore, we answer to our customers, not VC boards. We prioritize sustainable value and long-term relationships.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-emoji">⚡</div>
+        <h3 class="value-name">Enterprise Grade</h3>
+        <p class="value-desc">Leveraging advanced cloud architecture to deliver the robustness and security of corporate platforms at SME prices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT COMPANY -->
+  <section id="about-company">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-eyebrow">Who We Are</div>
+        <h2 class="section-title">Enterprise Power. Startup Soul.</h2>
+        <p>InfiniteXero is a bootstrapped SaaS company based in Bangalore, India. We believe business software shouldn't cost a fortune, require an complex IT team to run, or lock up your data.</p>
+        <p>We build tailored vertical products targeting Indian business operations, utilizing robust cloud architecture to deliver scale and performance without compromise.</p>
+      </div>
+      
+      <div class="about-card">
+        <div class="founder-name">Saurabh Sinha</div>
+        <div class="founder-role">Founder</div>
+        <div class="founder-bio">Technology entrepreneur and architect with 12+ years of experience building enterprise-grade software. Saurabh leads InfiniteXero's mission to democratize business software, combining enterprise-level scalability with simple, product-led solutions designed specifically for Indian SMEs.</div>
+        <div class="exp-grid">
+          <div class="exp-item">
+            <div class="exp-num">12+</div>
+            <div class="exp-desc">Years Product Leadership</div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-num">SaaS</div>
+            <div class="exp-desc">Cloud Architectural Design</div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-num">Enterprise</div>
+            <div class="exp-desc">Scale and Security</div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-num">SME</div>
+            <div class="exp-desc">Focused Business Value</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>InfiniteXero</span>. Proudly bootstrapped in Bangalore, India. 🇮🇳</p>
+  </footer>
+
+</body>
+
+</html>

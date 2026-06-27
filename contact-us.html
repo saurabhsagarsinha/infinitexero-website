@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — InfiniteXero</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC CONTACT STYLE ── */
+    .page-hero {
+      min-height: 35vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 6% 4rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .page-hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #contact {
+      background: var(--bg);
+    }
+
+    .contact-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      margin-top: 2.5rem;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent-blue);
+      background: rgba(30, 98, 201, 0.02);
+    }
+
+    .contact-link-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .contact-link-icon {
+      font-size: 1.5rem;
+    }
+
+    .contact-link-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-link-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.15rem;
+    }
+
+    .contact-arrow {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .page-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .contact-card {
+        padding: 2rem 1.5rem;
+      }
+      .contact-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1.2rem;
+      }
+      .contact-arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="index.html">
+      <img src="infinitexero_logo.png" alt="InfiniteXero" style="height: 46px; display: block;" />
+    </a>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact-us.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- PAGE HEADER -->
+  <section class="page-hero">
+    <h1>Contact Us</h1>
+    <p>Let's Build Something Great Together</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-wrap">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="page-title">Let's Connect</h2>
+      <p class="section-sub" style="margin: 0 auto 2.5rem;">Whether you're an SME looking for a solution, an investor, or a potential collaborator — we'd love to hear from you.</p>
+      
+      <div class="contact-card">
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:saurabhsagarsinha@infinitexero.com">
+            <div class="contact-link-left">
+              <span class="contact-link-icon">✉️</span>
+              <div>
+                <div class="contact-link-label">Email Us</div>
+                <div class="contact-link-value">saurabhsagarsinha@infinitexero.com</div>
+              </div>
+            </div>
+            <span class="contact-arrow">&rarr;</span>
+          </a>
+          <a class="contact-link" href="https://wa.me/918010810446" target="_blank">
+            <div class="contact-link-left">
+              <span class="contact-link-icon">💬</span>
+              <div>
+                <div class="contact-link-label">WhatsApp</div>
+                <div class="contact-link-value">+91 8010810446</div>
+              </div>
+            </div>
+            <span class="contact-arrow">&rarr;</span>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/company/infinitexero/about/" target="_blank">
+            <div class="contact-link-left">
+              <span class="contact-link-icon">💼</span>
+              <div>
+                <div class="contact-link-label">LinkedIn</div>
+                <div class="contact-link-value">InfiniteXero</div>
+              </div>
+            </div>
+            <span class="contact-arrow">&rarr;</span>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <div class="contact-link-left">
+              <span class="contact-link-icon">📍</span>
+              <div>
+                <div class="contact-link-label">Location</div>
+                <div class="contact-link-value">Bangalore, Karnataka, India</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>InfiniteXero</span>. Proudly bootstrapped in Bangalore, India. 🇮🇳</p>
+  </footer>
+
+</body>
+
+</html>
