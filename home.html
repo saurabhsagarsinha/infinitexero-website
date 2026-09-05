@@ -447,6 +447,132 @@ permalink: /home
       line-height: 1.6;
     }
 
+    /* ── RISK-FREE ENGAGEMENT (attention-grabbing banner) ── */
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(251, 188, 5, 0.35); }
+      50% { box-shadow: 0 0 0 10px rgba(251, 188, 5, 0); }
+    }
+
+    #risk-free {
+      background: radial-gradient(ellipse 100% 100% at 50% 0%, #12203f 0%, #0b1530 55%, #08102400 100%), #0b1530;
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 6%;
+    }
+
+    #risk-free::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(52, 168, 83, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(30, 98, 201, 0.25) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    #risk-free .section-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    #risk-free .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(251, 188, 5, 0.12);
+      border: 1px solid rgba(251, 188, 5, 0.35);
+      color: var(--accent-yellow);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+    }
+
+    #risk-free .section-title {
+      color: #ffffff;
+    }
+
+    #risk-free .section-sub {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .risk-free-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .risk-free-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+      border-radius: 14px;
+      padding: 2.3rem 2rem;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, border-color 0.35s, background 0.35s;
+    }
+
+    .risk-free-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .risk-free-card:hover .risk-free-icon {
+      transform: scale(1.15) rotate(-6deg);
+    }
+
+    .risk-free-card.featured {
+      border-color: rgba(251, 188, 5, 0.5);
+      background: rgba(251, 188, 5, 0.06);
+    }
+
+    .risk-free-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0b1530;
+      background: var(--accent-yellow);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .risk-free-icon {
+      font-size: 2rem;
+      margin-bottom: 1.1rem;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .risk-free-card.featured .risk-free-icon {
+      background: rgba(251, 188, 5, 0.15);
+      animation: glowPulse 2.4s ease-in-out infinite;
+    }
+
+    .risk-free-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+
+    .risk-free-desc {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
     /* ── ABOUT COMPANY ── */
     #about-company {
       background: var(--bg);
@@ -613,6 +739,36 @@ permalink: /home
       <div class="stat">
         <div class="stat-num">₹0</div>
         <div class="stat-label">VC Funding — Proudly Bootstrapped</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISK-FREE ENGAGEMENT -->
+  <section id="risk-free">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">⚡ Getting Started Is Risk-Free</div>
+      <h2 class="section-title">Cost-effective IT that never feels like a burden.</h2>
+      <p class="section-sub">We keep the investment light and the commitment lighter, so trying us out is an easy decision.</p>
+    </div>
+
+    <div class="risk-free-grid reveal reveal-stagger">
+      <div class="risk-free-card">
+        <div class="risk-free-icon">💰</div>
+        <h3 class="risk-free-name">Cost-Effective by Design</h3>
+        <p class="risk-free-desc">We price our engagements to stay well within reach of small and mid-sized businesses, so your IT investment never feels like a burden on the business.</p>
+      </div>
+
+      <div class="risk-free-card featured">
+        <span class="risk-free-badge">Zero Risk</span>
+        <div class="risk-free-icon">🆓</div>
+        <h3 class="risk-free-name">Try the Custom Solution, Free</h3>
+        <p class="risk-free-desc">Before you commit, we build and run a working version of your custom solution at no cost — so you can see the real value before you pay for it.</p>
+      </div>
+
+      <div class="risk-free-card">
+        <div class="risk-free-icon">🤝</div>
+        <h3 class="risk-free-name">No Long-Term Lock-In</h3>
+        <p class="risk-free-desc">If it's the right fit, we continue the partnership. If it isn't, walking away is simple — no lengthy contracts, no exit penalties.</p>
       </div>
     </div>
   </section>
