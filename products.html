@@ -7,10 +7,10 @@ permalink: /products
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products — InfiniteXero</title>
+  <title>Industries We Serve — InfiniteXero</title>
   <link rel="stylesheet" href="/style.css" />
   <style>
-    /* ── PAGE-SPECIFIC PRODUCTS STYLE ── */
+    /* ── PAGE-SPECIFIC INDUSTRIES STYLE ── */
     .page-hero {
       min-height: 35vh;
       display: flex;
@@ -37,237 +37,122 @@ permalink: /products
     .page-hero p {
       color: var(--text-muted);
       font-size: 1.15rem;
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto;
     }
 
-    #products {
+    #industries {
       background: var(--bg);
     }
 
-    .products-grid {
+    .industries-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
     }
 
-    .product-card {
+    .industry-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 2.5rem;
+      padding: 2.25rem;
       box-shadow: var(--card-shadow);
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      display: flex;
-      flex-direction: column;
-      position: relative;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 2.25rem;
     }
 
-    .product-card:hover {
-      transform: translateY(-5px);
+    .industry-card:hover {
       box-shadow: var(--card-shadow-hover);
     }
 
-    /* Color borders for each product card */
-    .product-card.gymos { border-top: 4px solid var(--accent-blue); }
-    .product-card.zarooratwala { border-top: 4px solid var(--accent-green); }
-    .product-card.pgsaathi { border-top: 4px solid var(--accent-yellow); }
+    .industry-card.c1 { border-left: 4px solid var(--accent-red); }
+    .industry-card.c2 { border-left: 4px solid var(--accent-blue); }
+    .industry-card.c3 { border-left: 4px solid var(--accent-green); }
+    .industry-card.c4 { border-left: 4px solid var(--accent-yellow); }
+    .industry-card.c5 { border-left: 4px solid var(--accent-purple); }
 
-    .product-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1.25rem;
-      width: 52px;
-      height: 52px;
+    .industry-intro {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .industry-icon {
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 10px;
     }
 
-    .gymos .product-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
-    .zarooratwala .product-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
-    .pgsaathi .product-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+    .c1 .industry-icon { background: rgba(234, 67, 53, 0.08); color: var(--accent-red); }
+    .c2 .industry-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
+    .c3 .industry-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
+    .c4 .industry-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+    .c5 .industry-icon { background: rgba(99, 102, 241, 0.08); color: var(--accent-purple); }
 
-    .product-status {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 99px;
-      margin-bottom: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      width: fit-content;
-    }
-
-    .status-live { background: rgba(52, 168, 83, 0.1); color: var(--accent-green); border: 1px solid rgba(52, 168, 83, 0.2); }
-    .status-beta { background: rgba(30, 98, 201, 0.1); color: var(--accent-blue); border: 1px solid rgba(30, 98, 201, 0.2); }
-    .status-building { background: rgba(234, 67, 53, 0.1); color: var(--accent-red); border: 1px solid rgba(234, 67, 53, 0.2); }
-    .status-coming { background: rgba(251, 188, 5, 0.1); color: var(--accent-yellow); border: 1px solid rgba(251, 188, 5, 0.2); }
-
-    .product-name {
+    .industry-name {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
       color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
     }
 
-    .product-tagline {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .product-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .product-features {
-      list-style: none;
-      margin-bottom: 1.75rem;
-      flex-grow: 1;
-    }
-
-    .product-features li {
+    .industry-desc {
       color: var(--text-muted);
       font-size: 0.9rem;
-      padding: 0.35rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+      line-height: 1.6;
     }
 
-    .product-features li::before {
-      content: '✓';
-      font-weight: 700;
-    }
-
-    .gymos .product-features li::before { color: var(--accent-blue); }
-    .zarooratwala .product-features li::before { color: var(--accent-green); }
-    .pgsaathi .product-features li::before { color: var(--accent-yellow); }
-
-    .product-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .tech-tag {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      font-weight: 500;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-    }
-
-    /* ── FLAGSHIP CARD (BIZSAATHI) ── */
-    .bizsaathi-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-top: 4px solid var(--accent-red);
-      border-radius: 12px;
-      padding: 2.5rem;
-      box-shadow: var(--card-shadow);
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .bizsaathi-card:hover {
-      box-shadow: var(--card-shadow-hover);
-    }
-
-    .bizsaathi-details {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .featured-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(234, 67, 53, 0.08);
-      border: 1px solid rgba(234, 67, 53, 0.2);
-      color: var(--accent-red);
+    .industry-col-label {
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 99px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
-      width: fit-content;
+      margin-bottom: 0.85rem;
     }
 
-    .bizsaathi-name {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 0.3rem;
+    .industry-col-label.challenges { color: var(--text-muted); }
+    .industry-col-label.solutions { color: var(--accent-blue); }
+
+    .industry-list {
+      list-style: none;
     }
 
-    .bizsaathi-desc {
+    .industry-list li {
       color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
 
-    .module-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .module-item {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.2rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    }
-
-    .module-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .module-name {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.95rem;
+    .challenges-list li::before {
+      content: '!';
+      color: var(--accent-red);
       font-weight: 700;
-      color: var(--text);
+      flex-shrink: 0;
     }
 
-    .module-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-      line-height: 1.45;
+    .solutions-list li::before {
+      content: '✓';
+      color: var(--accent-blue);
+      font-weight: 700;
+      flex-shrink: 0;
     }
 
-    @media (max-width: 768px) {
-      .bizsaathi-card {
+    @media (max-width: 900px) {
+      .industry-card {
         grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 1.75rem;
-      }
-      .module-grid {
-        grid-template-columns: 1fr;
+        gap: 1.25rem;
       }
     }
   </style>
@@ -287,7 +172,7 @@ permalink: /products
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="/home">Home</a></li>
-      <li><a href="/products">Products</a></li>
+      <li><a href="/products">Industries</a></li>
       <li><a href="/services">Services</a></li>
       <li><a href="/contact-us.html" class="nav-cta">Contact Us</a></li>
     </ul>
@@ -312,104 +197,221 @@ permalink: /products
 
   <!-- PAGE HEADER -->
   <section class="page-hero">
-    <h1>Our Products</h1>
-    <p>Integrated Business Software Suites Designed for Scale and Security</p>
+    <h1>Industries We Serve</h1>
+    <p>We help small and mid-sized businesses across India identify and implement the right software for their operations.</p>
   </section>
 
-  <!-- PRODUCTS -->
-  <section id="products">
+  <!-- INDUSTRIES -->
+  <section id="industries">
     <div class="section-header">
-      <div class="section-eyebrow">Suite of Apps</div>
-      <h2 class="section-title">Engineered for real business operations.</h2>
-      <p class="section-sub">Every product is a stand-alone solution that integrates smoothly with other apps in the InfiniteXero ecosystem.</p>
+      <div class="section-eyebrow">Who We Help</div>
+      <h2 class="section-title">Every business has different problems. Software shouldn't be one-size-fits-all.</h2>
+      <p class="section-sub">We work with owners and operators to map their day-to-day challenges to the right category of software — then help select, implement, and support it.</p>
     </div>
 
-    <div class="products-grid">
+    <div class="industries-grid">
 
-      <!-- BIZSAATHI — FEATURED / FLAGSHIP -->
-      <div class="bizsaathi-card">
-        <div class="bizsaathi-details">
-          <div class="featured-badge">⭐ Flagship SaaS</div>
-          <div class="bizsaathi-name">BizSaathi</div>
-          <div class="product-tagline" style="color: var(--accent-red);">Your SME Business Companion</div>
-
-          <p class="bizsaathi-desc">India's simplest compliance and operations manager for retail & SMEs. Automate GST deadline alerts, organize vendor registrations, store crucial compliance documents, and build professional purchase orders—with direct integration to WhatsApp API notifications.</p>
-
+      <!-- MANUFACTURING -->
+      <div class="industry-card c1">
+        <div class="industry-intro">
+          <div class="industry-icon">🏭</div>
+          <div class="industry-name">Small Manufacturing Firms</div>
+          <p class="industry-desc">Shop-floor and back-office visibility for small manufacturers who are still running on spreadsheets and paper.</p>
         </div>
-        
-        <div class="module-grid">
-          <div class="module-item">
-            <div class="module-icon">📋</div>
-            <div class="module-name">GST Tracker</div>
-            <div class="module-desc">Filing timelines & auto-reminders</div>
-          </div>
-          <div class="module-item">
-            <div class="module-icon">📁</div>
-            <div class="module-name">Document Vault</div>
-            <div class="module-desc">Licences, certs & expiry alerts</div>
-          </div>
-          <div class="module-item">
-            <div class="module-icon">🤝</div>
-            <div class="module-name">Vendor Register</div>
-            <div class="module-desc">Suppliers, GSTIN & terms register</div>
-          </div>
-          <div class="module-item">
-            <div class="module-icon">📦</div>
-            <div class="module-name">Purchase Orders</div>
-            <div class="module-desc">PO creation, approval & tracking</div>
-          </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Inventory management</li>
+            <li>Production planning</li>
+            <li>Quality control</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>ERP systems</li>
+            <li>Manufacturing execution systems (MES)</li>
+            <li>QMS software</li>
+          </ul>
         </div>
       </div>
 
-      <!-- GYMOS -->
-      <div class="product-card gymos">
-        <div class="product-icon">🏋️</div>
-
-        <div class="product-name">GymOS</div>
-        <div class="product-tagline" style="color: var(--accent-blue);">Corporate Fitness Platform</div>
-        <p class="product-desc">Enterprise SaaS platform built for operators managing corporate fitness parks. Streamline membership tiers, log attendances, configure Razorpay subscriptions, and compile automated client reports.</p>
-        <ul class="product-features">
-          <li>Member onboarding & digital KYC</li>
-          <li>Attendance & active facility tracking</li>
-          <li>Automated Razorpay recurring billing</li>
-          <li>Corporate reporting and user analytics</li>
-          <li>Multi-facility and park support</li>
-        </ul>
-
+      <!-- RETAIL & WHOLESALE -->
+      <div class="industry-card c2">
+        <div class="industry-intro">
+          <div class="industry-icon">🛍️</div>
+          <div class="industry-name">Retail & Wholesale Traders</div>
+          <p class="industry-desc">Point-of-sale to ledger — keeping sales, vendors, and cash flow in one place instead of three notebooks.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Sales tracking</li>
+            <li>Vendor management</li>
+            <li>Invoicing & payments</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>POS systems</li>
+            <li>Inventory management software</li>
+            <li>Accounting software</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- ZAROORATWALA -->
-      <div class="product-card zarooratwala">
-        <div class="product-icon">🛒</div>
-
-        <div class="product-name">ZarooratWala</div>
-        <div class="product-tagline" style="color: var(--accent-green);">WhatsApp-Native Groceries</div>
-        <p class="product-desc">Specialty regional grocery delivery service targeting Bangalore's diaspora. Offers a WhatsApp-native conversational checkout experience, AI-assisted ordering, and same-day delivery routing.</p>
-        <ul class="product-features">
-          <li>Authentic North Indian specialties</li>
-          <li>Conversational WhatsApp ordering</li>
-          <li>AI-powered products recomendation</li>
-          <li>Real-time automated status reports</li>
-          <li>Same-day logistics integration</li>
-        </ul>
-
+      <!-- RESTAURANTS & FOOD -->
+      <div class="industry-card c3">
+        <div class="industry-intro">
+          <div class="industry-icon">🍽️</div>
+          <div class="industry-name">Restaurants & Food Services</div>
+          <p class="industry-desc">From table reservations to kitchen ingredient tracking, tying front-of-house and back-of-house together.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Online ordering</li>
+            <li>Reservations</li>
+            <li>Menu management</li>
+            <li>Ingredient tracking</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>Restaurant management systems</li>
+            <li>Online ordering platforms</li>
+            <li>Recipe management software</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- PG SAATHI -->
-      <div class="product-card pgsaathi">
-        <div class="product-icon">🏠</div>
+      <!-- SALONS, SPAS & WELLNESS -->
+      <div class="industry-card c4">
+        <div class="industry-intro">
+          <div class="industry-icon">💆</div>
+          <div class="industry-name">Salons, Spas & Wellness Centers</div>
+          <p class="industry-desc">Booking, staffing, and repeat-customer relationships — without losing appointments to a phone diary.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Appointment booking</li>
+            <li>Staff scheduling</li>
+            <li>Customer management</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>Appointment booking apps</li>
+            <li>CRM systems</li>
+            <li>Salon management software</li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="product-name">PG Saathi</div>
-        <div class="product-tagline" style="color: var(--accent-yellow);">Property Management SaaS</div>
-        <p class="product-desc">End-to-end cloud platform designed for Paying Guest (PG) accommodation owners in Bangalore. Streamline tenant records, automate rent collections via WhatsApp dues, and manage bed allocations.</p>
-        <ul class="product-features">
-          <li>Property / Room / Bed hierarchies</li>
-          <li>Digital tenant KYC document vault</li>
-          <li>Automated Razorpay payment links</li>
-          <li>Police verification tracking</li>
-          <li>Maintenance request board</li>
-        </ul>
+      <!-- COACHING & TRAINING -->
+      <div class="industry-card c5">
+        <div class="industry-intro">
+          <div class="industry-icon">🎓</div>
+          <div class="industry-name">Coaching Classes & Training Centers</div>
+          <p class="industry-desc">Enrollment, batches, and assessments handled digitally as class sizes and course catalogs grow.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Student enrollment</li>
+            <li>Scheduling</li>
+            <li>Assessments</li>
+            <li>Course management</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>Learning management systems (LMS)</li>
+            <li>Student information systems (SIS)</li>
+          </ul>
+        </div>
+      </div>
 
+      <!-- TRAVEL AGENCIES -->
+      <div class="industry-card c1">
+        <div class="industry-intro">
+          <div class="industry-icon">✈️</div>
+          <div class="industry-name">Travel Agencies & Tour Operators</div>
+          <p class="industry-desc">Itineraries, vendor coordination, and billing for agencies juggling multiple suppliers per trip.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Itinerary planning</li>
+            <li>Reservations</li>
+            <li>Vendor management</li>
+            <li>Invoicing</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>Travel agency software</li>
+            <li>Tour operator systems</li>
+            <li>Online booking engines</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LOGISTICS & TRANSPORT -->
+      <div class="industry-card c2">
+        <div class="industry-intro">
+          <div class="industry-icon">🚚</div>
+          <div class="industry-name">Logistics & Transport Companies</div>
+          <p class="industry-desc">Real-time visibility into fleets and shipments so nothing gets delayed silently.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Route optimization</li>
+            <li>Fleet tracking</li>
+            <li>Shipment management</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>Transportation management systems (TMS)</li>
+            <li>Fleet management software</li>
+            <li>Shipment tracking tools</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PROFESSIONAL SERVICES -->
+      <div class="industry-card c3">
+        <div class="industry-intro">
+          <div class="industry-icon">⚖️</div>
+          <div class="industry-name">Professional Services Firms</div>
+          <p class="industry-desc">CAs, company secretaries, lawyers, and consultancies — managing clients, documents, and billable time.</p>
+        </div>
+        <div>
+          <div class="industry-col-label challenges">Challenges</div>
+          <ul class="industry-list challenges-list">
+            <li>Client management</li>
+            <li>Invoicing</li>
+            <li>Document management</li>
+            <li>Time tracking</li>
+          </ul>
+        </div>
+        <div>
+          <div class="industry-col-label solutions">Potential Solutions</div>
+          <ul class="industry-list solutions-list">
+            <li>Professional services automation (PSA) tools</li>
+            <li>Document management systems (DMS)</li>
+            <li>Time tracking software</li>
+          </ul>
+        </div>
       </div>
 
     </div>

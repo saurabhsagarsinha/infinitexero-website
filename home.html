@@ -11,6 +11,52 @@ permalink: /home
   <link rel="stylesheet" href="/style.css" />
   <style>
     /* ── PAGE-SPECIFIC HOME STYLE ── */
+
+    /* Respect users who've asked for less motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(15px, -20px) scale(1.05); }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    /* Scroll-reveal: elements start hidden, JS flips .is-visible on intersect */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger.is-visible > * {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: 0.05s; }
+    .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: 0.12s; }
+    .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: 0.19s; }
+    .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 0.26s; }
+    .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 0.33s; }
+    .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
+    .reveal-stagger.is-visible > *:nth-child(7) { animation-delay: 0.47s; }
+    .reveal-stagger.is-visible > *:nth-child(8) { animation-delay: 0.54s; }
+
     .hero {
       min-height: 90vh;
       display: flex;
@@ -24,6 +70,15 @@ permalink: /home
       background: #ffffff;
     }
 
+    .hero-badge, .hero h1, .hero p, .hero-actions, .hero-stats {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 { animation-delay: 0.1s; }
+    .hero p { animation-delay: 0.2s; }
+    .hero-actions { animation-delay: 0.3s; }
+    .hero-stats { animation-delay: 0.4s; }
+
     .hero-mesh {
       position: absolute;
       inset: 0;
@@ -32,6 +87,7 @@ permalink: /home
         radial-gradient(ellipse 60% 50% at 50% 10%, rgba(30, 98, 201, 0.05) 0%, transparent 70%),
         radial-gradient(ellipse 40% 30% at 85% 85%, rgba(52, 168, 83, 0.04) 0%, transparent 60%),
         radial-gradient(ellipse 45% 35% at 15% 75%, rgba(234, 67, 53, 0.04) 0%, transparent 60%);
+      animation: floatBlob 12s ease-in-out infinite;
     }
 
     .grid-overlay {
@@ -68,6 +124,7 @@ permalink: /home
       height: 6px;
       border-radius: 50%;
       background: var(--accent-red);
+      animation: pulseDot 2s ease-in-out infinite;
     }
 
     .hero h1 {
@@ -133,24 +190,89 @@ permalink: /home
       margin-top: 0.3rem;
     }
 
-    /* ── PRODUCTS OVERVIEW ── */
-    #products-overview {
+    /* ── CUSTOM SOFTWARE BANNER ── */
+    #custom-software {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 4.5rem 6%;
+    }
+
+    .custom-banner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .custom-banner:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .custom-banner-icon {
+      font-size: 2.6rem;
+      width: 76px;
+      height: 76px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: rgba(30, 98, 201, 0.08);
+    }
+
+    .custom-banner-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.3px;
+    }
+
+    .custom-banner-desc {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .custom-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem;
+      }
+      .custom-banner-icon {
+        margin: 0 auto;
+      }
+    }
+
+    /* ── INDUSTRIES OVERVIEW ── */
+    #industries-overview {
       background: var(--bg);
       border-top: 1px solid var(--border);
     }
 
-    .products-overview-grid {
+    .industries-overview-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
     }
 
-    .product-overview-card {
+    .industry-overview-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 2.2rem;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      padding: 1.9rem;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, border-color 0.35s;
       box-shadow: var(--card-shadow);
       text-decoration: none;
       color: inherit;
@@ -158,62 +280,121 @@ permalink: /home
       flex-direction: column;
     }
 
-    .product-overview-card:hover {
-      transform: translateY(-5px);
+    .industry-overview-card:hover {
+      transform: translateY(-6px) scale(1.015);
       box-shadow: var(--card-shadow-hover);
     }
 
-    .product-overview-card.bizsaathi:hover { border-color: var(--accent-red); }
-    .product-overview-card.gymos:hover { border-color: var(--accent-blue); }
-    .product-overview-card.zarooratwala:hover { border-color: var(--accent-green); }
-    .product-overview-card.pgsaathi:hover { border-color: var(--accent-yellow); }
+    .industry-overview-card:hover .industry-overview-icon {
+      transform: scale(1.12) rotate(-4deg);
+    }
 
-    .product-overview-icon {
-      font-size: 2rem;
-      margin-bottom: 1.25rem;
-      width: 50px;
-      height: 50px;
+    .industry-overview-icon {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .industry-overview-link {
+      transition: gap 0.2s;
+    }
+
+    .industry-overview-card:hover .industry-overview-link {
+      gap: 0.55rem;
+    }
+
+    .industry-overview-card.i1:hover { border-color: var(--accent-red); }
+    .industry-overview-card.i2:hover { border-color: var(--accent-blue); }
+    .industry-overview-card.i3:hover { border-color: var(--accent-green); }
+    .industry-overview-card.i4:hover { border-color: var(--accent-yellow); }
+    .industry-overview-card.i5:hover { border-color: var(--accent-purple); }
+
+    .industry-overview-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      width: 46px;
+      height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 8px;
     }
 
-    .bizsaathi .product-overview-icon { background: rgba(234, 67, 53, 0.08); color: var(--accent-red); }
-    .gymos .product-overview-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
-    .zarooratwala .product-overview-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
-    .pgsaathi .product-overview-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+    .i1 .industry-overview-icon { background: rgba(234, 67, 53, 0.08); color: var(--accent-red); }
+    .i2 .industry-overview-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
+    .i3 .industry-overview-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
+    .i4 .industry-overview-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
+    .i5 .industry-overview-icon { background: rgba(99, 102, 241, 0.08); color: var(--accent-purple); }
 
-    .product-overview-title {
+    .industry-overview-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
       color: var(--text);
     }
 
-    .product-overview-desc {
+    .industry-overview-desc {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       line-height: 1.6;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       flex-grow: 1;
     }
 
-    .product-overview-link {
+    .industry-overview-link {
       color: var(--accent-blue);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
       gap: 0.35rem;
       margin-top: auto;
     }
 
-    .bizsaathi .product-overview-link { color: var(--accent-red); }
-    .gymos .product-overview-link { color: var(--accent-blue); }
-    .zarooratwala .product-overview-link { color: var(--accent-green); }
-    .pgsaathi .product-overview-link { color: var(--accent-yellow); }
+    .i1 .industry-overview-link { color: var(--accent-red); }
+    .i2 .industry-overview-link { color: var(--accent-blue); }
+    .i3 .industry-overview-link { color: var(--accent-green); }
+    .i4 .industry-overview-link { color: var(--accent-yellow); }
+    .i5 .industry-overview-link { color: var(--accent-purple); }
+
+    /* ── PARTNER STATEMENT ── */
+    #partner-statement {
+      background: linear-gradient(120deg, var(--accent-blue), var(--accent-purple));
+      padding: 4.5rem 6%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partner-statement-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .partner-statement-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 1rem;
+    }
+
+    .partner-statement-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.4;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    .partner-statement-text .highlight {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 0.05em 0.4em;
+      border-radius: 6px;
+    }
 
     /* ── WHY US ── */
     #why-us {
@@ -233,16 +414,23 @@ permalink: /home
       border-radius: 12px;
       padding: 2.2rem;
       box-shadow: var(--card-shadow);
-      transition: transform 0.2s;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
     }
 
     .value-card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .value-card:hover .value-emoji {
+      transform: scale(1.15);
     }
 
     .value-emoji {
       font-size: 2.2rem;
       margin-bottom: 1rem;
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .value-name {
@@ -379,7 +567,7 @@ permalink: /home
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="/home">Home</a></li>
-      <li><a href="/products">Products</a></li>
+      <li><a href="/products">Industries</a></li>
       <li><a href="/services">Services</a></li>
       <li><a href="/contact-us.html" class="nav-cta">Contact Us</a></li>
     </ul>
@@ -407,20 +595,20 @@ permalink: /home
     <div class="hero-mesh"></div>
     <div class="grid-overlay"></div>
     <div class="hero-badge">Bootstrapped in Bangalore</div>
-    <h1>Your Business Software,<br /><span>Simplified.</span></h1>
-    <p>InfiniteXero builds integrated, powerful, and affordable SaaS products for India's growing businesses—built to scale, designed to protect your privacy.</p>
+    <h1>The Right Software,<br /><span>For Your Business.</span></h1>
+    <p>InfiniteXero helps small manufacturers, retailers, restaurants, salons, coaching centers, travel agencies, logistics firms, and professional services find, implement, and get real value out of the software their business actually needs.</p>
     <div class="hero-actions">
-      <a href="/products" class="btn-primary">Explore Our Products</a>
+      <a href="/products" class="btn-primary">See Industries We Serve</a>
       <a href="/contact-us.html" class="btn-outline">Get in Touch</a>
     </div>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">12+</div>
+        <div class="stat-num" data-count="12" data-suffix="+">0</div>
         <div class="stat-label">Years Engineering Leadership</div>
       </div>
       <div class="stat">
-        <div class="stat-num">4</div>
-        <div class="stat-label">SaaS Products in Suite</div>
+        <div class="stat-num" data-count="8">0</div>
+        <div class="stat-label">Industries Served</div>
       </div>
       <div class="stat">
         <div class="stat-num">₹0</div>
@@ -429,68 +617,117 @@ permalink: /home
     </div>
   </section>
 
-  <!-- PRODUCTS OVERVIEW -->
-  <section id="products-overview">
-    <div class="section-header">
-      <div class="section-eyebrow">Explore Our Products</div>
-      <h2 class="section-title">Built for real business needs.</h2>
-      <p class="section-sub">A cohesive suite of applications engineered to streamline compliance, procurement, and operations for SMEs.</p>
+  <!-- CUSTOM SOFTWARE BANNER -->
+  <section id="custom-software">
+    <div class="custom-banner reveal">
+      <div class="custom-banner-icon">🧩</div>
+      <div>
+        <div class="custom-banner-title">We build custom software, focused entirely on your business.</div>
+        <p class="custom-banner-desc">We don't hand you a rigid, one-size-fits-all template. Every engagement starts with how your business actually operates, and we customize the solution — workflows, fields, reports, and integrations — to match your exact needs, not the other way around.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES OVERVIEW -->
+  <section id="industries-overview">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Who We Help</div>
+      <h2 class="section-title">Built around real business problems.</h2>
+      <p class="section-sub">Every industry runs into different operational bottlenecks. We help you match yours to the right category of software — then customize and implement it.</p>
     </div>
 
-    <div class="products-overview-grid">
-      <!-- BizSaathi -->
-      <a href="/products" class="product-overview-card bizsaathi">
-        <div class="product-overview-icon">📋</div>
-        <h3 class="product-overview-title">BizSaathi</h3>
-        <p class="product-overview-desc">SME compliance & operations platform. Auto-track GST deadlines, manage vendors, and create purchase orders with integrated WhatsApp alerts.</p>
-        <span class="product-overview-link">View Product &rarr;</span>
+    <div class="industries-overview-grid reveal reveal-stagger">
+      <a href="/products" class="industry-overview-card i1">
+        <div class="industry-overview-icon">🏭</div>
+        <h3 class="industry-overview-title">Small Manufacturing</h3>
+        <p class="industry-overview-desc">Inventory, production planning, and quality control — solved with ERP, MES, and QMS software.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
       </a>
 
-      <!-- GymOS -->
-      <a href="/products" class="product-overview-card gymos">
-        <div class="product-overview-icon">🏋️</div>
-        <h3 class="product-overview-title">GymOS</h3>
-        <p class="product-overview-desc">Corporate fitness management software. Streamline KYC, member onboarding, automated subscription billing, and multi-location park reporting.</p>
-        <span class="product-overview-link">View Product &rarr;</span>
+      <a href="/products" class="industry-overview-card i2">
+        <div class="industry-overview-icon">🛍️</div>
+        <h3 class="industry-overview-title">Retail & Wholesale</h3>
+        <p class="industry-overview-desc">Sales tracking, vendors, invoicing, and payments — solved with POS, inventory, and accounting software.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
       </a>
 
-      <!-- ZarooratWala -->
-      <a href="/products" class="product-overview-card zarooratwala">
-        <div class="product-overview-icon">🛒</div>
-        <h3 class="product-overview-title">ZarooratWala</h3>
-        <p class="product-overview-desc">WhatsApp-native hyper-local grocery delivery platform. Providing authentic Bihar specialties to Bangalore's diaspora via conversational AI.</p>
-        <span class="product-overview-link">View Product &rarr;</span>
+      <a href="/products" class="industry-overview-card i3">
+        <div class="industry-overview-icon">🍽️</div>
+        <h3 class="industry-overview-title">Restaurants & Food Services</h3>
+        <p class="industry-overview-desc">Online ordering, reservations, and ingredient tracking — solved with restaurant management and ordering platforms.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
       </a>
 
-      <!-- PG Saathi -->
-      <a href="/products" class="product-overview-card pgsaathi">
-        <div class="product-overview-icon">🏠</div>
-        <h3 class="product-overview-title">PG Saathi</h3>
-        <p class="product-overview-desc">Paying guest accommodation software. Manage rooms, allocate beds, automate rental collections, and track tenant KYC on one dashboard.</p>
-        <span class="product-overview-link">View Product &rarr;</span>
+      <a href="/products" class="industry-overview-card i4">
+        <div class="industry-overview-icon">💆</div>
+        <h3 class="industry-overview-title">Salons, Spas & Wellness</h3>
+        <p class="industry-overview-desc">Booking, staff scheduling, and customer management — solved with booking apps, CRM, and salon software.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
       </a>
+
+      <a href="/products" class="industry-overview-card i5">
+        <div class="industry-overview-icon">🎓</div>
+        <h3 class="industry-overview-title">Coaching & Training Centers</h3>
+        <p class="industry-overview-desc">Enrollment, scheduling, and assessments — solved with learning management and student information systems.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
+      </a>
+
+      <a href="/products" class="industry-overview-card i1">
+        <div class="industry-overview-icon">✈️</div>
+        <h3 class="industry-overview-title">Travel Agencies & Tour Operators</h3>
+        <p class="industry-overview-desc">Itineraries, reservations, and vendor invoicing — solved with travel and tour operator software.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
+      </a>
+
+      <a href="/products" class="industry-overview-card i2">
+        <div class="industry-overview-icon">🚚</div>
+        <h3 class="industry-overview-title">Logistics & Transport</h3>
+        <p class="industry-overview-desc">Route optimization, fleet tracking, and shipments — solved with TMS and fleet management software.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
+      </a>
+
+      <a href="/products" class="industry-overview-card i3">
+        <div class="industry-overview-icon">⚖️</div>
+        <h3 class="industry-overview-title">Professional Services</h3>
+        <p class="industry-overview-desc">Client, document, and time management — solved with PSA tools, DMS, and time tracking software.</p>
+        <span class="industry-overview-link">See Challenges &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PARTNER STATEMENT -->
+  <section id="partner-statement">
+    <div class="partner-statement-inner reveal">
+      <div class="partner-statement-eyebrow">Our Promise</div>
+      <p class="partner-statement-text">We are your partner. <span class="highlight">You take care of your business</span> — we'll take care of your technology, IT & software solutions.</p>
     </div>
   </section>
 
   <!-- WHY US -->
   <section id="why-us">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-eyebrow">The InfiniteXero Promise</div>
       <h2 class="section-title">A software partner you can trust.</h2>
       <p class="section-sub">Inspired by the core values of customer-aligned software design.</p>
     </div>
 
-    <div class="values-grid">
+    <div class="values-grid reveal reveal-stagger">
+      <div class="value-card">
+        <div class="value-emoji">🧩</div>
+        <h3 class="value-name">Custom-Built For You</h3>
+        <p class="value-desc">We tailor every solution — workflows, fields, and integrations — to how your business actually runs, not a generic template.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-emoji">🎯</div>
+        <h3 class="value-name">Industry-Led, Not Product-Led</h3>
+        <p class="value-desc">We start from your day-to-day operational problems, not a pre-built feature list, and recommend software that actually fits.</p>
+      </div>
+
       <div class="value-card">
         <div class="value-emoji">🔒</div>
         <h3 class="value-name">Privacy First</h3>
         <p class="value-desc">We never sell your data or serve third-party ads. Your business metrics and files remain entirely yours and secure.</p>
-      </div>
-
-      <div class="value-card">
-        <div class="value-emoji">🛠️</div>
-        <h3 class="value-name">Unified Suite</h3>
-        <p class="value-desc">Our software is designed to integrate natively. Flow data smoothly from procurement, to inventory, to communication channels.</p>
       </div>
 
       <div class="value-card">
@@ -510,14 +747,14 @@ permalink: /home
   <!-- ABOUT COMPANY -->
   <section id="about-company">
     <div class="about-grid">
-      <div class="about-text">
+      <div class="about-text reveal">
         <div class="section-eyebrow">Who We Are</div>
         <h2 class="section-title">Enterprise Power. Startup Soul.</h2>
-        <p>InfiniteXero is a bootstrapped SaaS company based in Bangalore, India. We believe business software shouldn't cost a fortune, require an complex IT team to run, or lock up your data.</p>
-        <p>We build tailored vertical products targeting Indian business operations, utilizing robust cloud architecture to deliver scale and performance without compromise.</p>
+        <p>InfiniteXero is a bootstrapped software company based in Bangalore, India. We believe every small manufacturer, retailer, restaurant, salon, coaching center, travel agency, logistics firm, and professional services practice deserves software built around how they actually work — not the other way around.</p>
+        <p>That's why we build custom software focused entirely on your business — customizing every workflow, field, and integration to your specific needs, across eight core industries, from initial selection through implementation and ongoing support.</p>
       </div>
-      
-      <div class="about-card">
+
+      <div class="about-card reveal">
         <div class="founder-name">Surbhi Sinha</div>
         <div class="founder-role">Founder</div>
         <div class="founder-bio">Technology entrepreneur and architect with 12+ years of experience building enterprise-grade software. Surbhi leads InfiniteXero's mission to democratize business software, combining enterprise-level scalability with simple, product-led solutions designed specifically for Indian SMEs.</div>
@@ -547,6 +784,43 @@ permalink: /home
   <footer>
     <p>© 2026 <span>InfiniteXero</span>. Proudly bootstrapped in Bangalore, India. 🇮🇳</p>
   </footer>
+
+  <script>
+    // Reveal sections/cards as they scroll into view
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Count-up animation for hero stats
+    const countEls = document.querySelectorAll('.stat-num[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    countEls.forEach(el => countObserver.observe(el));
+  </script>
 
 </body>
 

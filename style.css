@@ -13,10 +13,10 @@
   --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   
   /* Zoho-inspired Corporate Accents */
-  --accent-blue: #1e62c9;    /* Corporate Ops / GymOS */
-  --accent-red: #ea4335;     /* ERP & Finance / BizSaathi */
-  --accent-green: #34a853;   /* Native Delivery / ZarooratWala */
-  --accent-yellow: #fbbc05;  /* Property SaaS / PG Saathi */
+  --accent-blue: #1e62c9;
+  --accent-red: #ea4335;
+  --accent-green: #34a853;
+  --accent-yellow: #fbbc05;
   --accent-purple: #6366f1;
 }
 
