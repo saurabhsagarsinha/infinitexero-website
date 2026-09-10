@@ -59,15 +59,99 @@ permalink: /home
 
     .hero {
       min-height: 90vh;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      gap: 2rem;
+      text-align: left;
       padding: 9rem 6% 6rem;
       position: relative;
       overflow: hidden;
       background: #ffffff;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions,
+    .hero-stats {
+      justify-content: flex-start;
+    }
+
+    .hero p {
+      margin: 0 0 2.5rem;
+    }
+
+    /* ── HERO ILLUSTRATION ── */
+    .hero-illustration {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 0.9s ease 0.25s both;
+    }
+
+    .hero-illustration svg {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      overflow: visible;
+    }
+
+    @keyframes illoFloatA {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(6px, -14px) rotate(3deg); }
+    }
+    @keyframes illoFloatB {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-8px, -10px) rotate(-4deg); }
+    }
+    @keyframes illoBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes illoSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes illoSparkle {
+      0%, 100% { opacity: 0.35; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    @keyframes illoTick {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(8deg); }
+    }
+
+    .illo-card-1 { animation: illoFloatA 5s ease-in-out infinite; transform-origin: center; }
+    .illo-card-2 { animation: illoFloatB 6s ease-in-out infinite; transform-origin: center; }
+    .illo-gauge-needle { animation: illoTick 3.4s ease-in-out infinite; transform-origin: 90px 210px; }
+    .illo-clock-hand-min { animation: illoSpin 8s linear infinite; transform-origin: 500px 430px; }
+    .illo-clock-hand-hr { animation: illoSpin 32s linear infinite; transform-origin: 500px 430px; }
+    .illo-person { animation: illoBob 4.5s ease-in-out infinite; transform-origin: center; }
+    .illo-sparkle-a { animation: illoSparkle 2.2s ease-in-out infinite; }
+    .illo-sparkle-b { animation: illoSparkle 2.6s ease-in-out infinite 0.4s; }
+    .illo-sparkle-c { animation: illoSparkle 1.9s ease-in-out infinite 0.8s; }
+    .illo-blob { animation: illoFloatA 10s ease-in-out infinite; transform-origin: center; }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-actions, .hero-stats {
+        justify-content: center;
+      }
+      .hero-illustration {
+        order: -1;
+        margin-bottom: 1rem;
+      }
+      .hero-illustration svg {
+        max-width: 320px;
+      }
     }
 
     .hero-badge, .hero h1, .hero p, .hero-actions, .hero-stats {
@@ -84,9 +168,10 @@ permalink: /home
       inset: 0;
       z-index: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 50% 10%, rgba(30, 98, 201, 0.05) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 85% 85%, rgba(52, 168, 83, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 35% at 15% 75%, rgba(234, 67, 53, 0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 50% at 50% 10%, rgba(30, 98, 201, 0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 85% 85%, rgba(52, 168, 83, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 35% at 15% 75%, rgba(234, 67, 53, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 30% at 75% 15%, rgba(251, 188, 5, 0.08) 0%, transparent 60%);
       animation: floatBlob 12s ease-in-out infinite;
     }
 
@@ -305,7 +390,7 @@ permalink: /home
     .industry-overview-card.i2:hover { border-color: var(--accent-blue); }
     .industry-overview-card.i3:hover { border-color: var(--accent-green); }
     .industry-overview-card.i4:hover { border-color: var(--accent-yellow); }
-    .industry-overview-card.i5:hover { border-color: var(--accent-purple); }
+    .industry-overview-card.i5:hover { border-color: var(--accent-red); }
 
     .industry-overview-icon {
       font-size: 1.8rem;
@@ -318,11 +403,11 @@ permalink: /home
       border-radius: 8px;
     }
 
-    .i1 .industry-overview-icon { background: rgba(234, 67, 53, 0.08); color: var(--accent-red); }
-    .i2 .industry-overview-icon { background: rgba(30, 98, 201, 0.08); color: var(--accent-blue); }
-    .i3 .industry-overview-icon { background: rgba(52, 168, 83, 0.08); color: var(--accent-green); }
-    .i4 .industry-overview-icon { background: rgba(251, 188, 5, 0.08); color: var(--accent-yellow); }
-    .i5 .industry-overview-icon { background: rgba(99, 102, 241, 0.08); color: var(--accent-purple); }
+    .i1 .industry-overview-icon { background: rgba(234, 68, 56, 0.1); color: var(--accent-red); }
+    .i2 .industry-overview-icon { background: rgba(30, 100, 186, 0.1); color: var(--accent-blue); }
+    .i3 .industry-overview-icon { background: rgba(52, 159, 90, 0.1); color: var(--accent-green); }
+    .i4 .industry-overview-icon { background: rgba(249, 187, 15, 0.12); color: var(--accent-yellow); }
+    .i5 .industry-overview-icon { background: rgba(234, 68, 56, 0.1); color: var(--accent-red); }
 
     .industry-overview-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -354,11 +439,11 @@ permalink: /home
     .i2 .industry-overview-link { color: var(--accent-blue); }
     .i3 .industry-overview-link { color: var(--accent-green); }
     .i4 .industry-overview-link { color: var(--accent-yellow); }
-    .i5 .industry-overview-link { color: var(--accent-purple); }
+    .i5 .industry-overview-link { color: var(--accent-red); }
 
     /* ── PARTNER STATEMENT ── */
     #partner-statement {
-      background: linear-gradient(120deg, var(--accent-blue), var(--accent-purple));
+      background: linear-gradient(120deg, var(--accent-blue), var(--accent-green));
       padding: 4.5rem 6%;
       position: relative;
       overflow: hidden;
@@ -449,8 +534,8 @@ permalink: /home
 
     /* ── RISK-FREE ENGAGEMENT (attention-grabbing banner) ── */
     @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(251, 188, 5, 0.35); }
-      50% { box-shadow: 0 0 0 10px rgba(251, 188, 5, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249, 187, 15, 0.35); }
+      50% { box-shadow: 0 0 0 10px rgba(249, 187, 15, 0); }
     }
 
     #risk-free {
@@ -522,10 +607,9 @@ permalink: /home
       transform: scale(1.15) rotate(-6deg);
     }
 
-    .risk-free-card.featured {
-      border-color: rgba(251, 188, 5, 0.5);
-      background: rgba(251, 188, 5, 0.06);
-    }
+    .risk-free-card.rf-red { border-color: rgba(234, 68, 56, 0.4); background: rgba(234, 68, 56, 0.06); }
+    .risk-free-card.rf-yellow { border-color: rgba(249, 187, 15, 0.5); background: rgba(249, 187, 15, 0.06); }
+    .risk-free-card.rf-green { border-color: rgba(52, 159, 90, 0.4); background: rgba(52, 159, 90, 0.06); }
 
     .risk-free-badge {
       display: inline-block;
@@ -553,10 +637,9 @@ permalink: /home
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .risk-free-card.featured .risk-free-icon {
-      background: rgba(251, 188, 5, 0.15);
-      animation: glowPulse 2.4s ease-in-out infinite;
-    }
+    .rf-red .risk-free-icon { background: rgba(234, 68, 56, 0.16); }
+    .rf-yellow .risk-free-icon { background: rgba(249, 187, 15, 0.18); animation: glowPulse 2.4s ease-in-out infinite; }
+    .rf-green .risk-free-icon { background: rgba(52, 159, 90, 0.16); }
 
     .risk-free-name {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -610,7 +693,7 @@ permalink: /home
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      background: var(--grad-full);
     }
 
     .founder-name {
@@ -720,26 +803,111 @@ permalink: /home
   <section id="home" class="hero">
     <div class="hero-mesh"></div>
     <div class="grid-overlay"></div>
-    <div class="hero-badge">Bootstrapped in Bangalore</div>
-    <h1>The Right Software,<br /><span>For Your Business.</span></h1>
-    <p>InfiniteXero helps small manufacturers, retailers, restaurants, salons, coaching centers, travel agencies, logistics firms, and professional services find, implement, and get real value out of the software their business actually needs.</p>
-    <div class="hero-actions">
-      <a href="/products" class="btn-primary">See Industries We Serve</a>
-      <a href="/contact-us.html" class="btn-outline">Get in Touch</a>
+    <div class="hero-copy">
+      <div class="hero-badge">Bootstrapped in Bangalore</div>
+      <h1>The Right Software,<br /><span>For Your Business.</span></h1>
+      <p>InfiniteXero helps small manufacturers, retailers, restaurants, salons, coaching centers, travel agencies, logistics firms, and professional services find, implement, and get real value out of the software their business actually needs.</p>
+      <div class="hero-actions">
+        <a href="/products" class="btn-primary">See Industries We Serve</a>
+        <a href="/contact-us.html" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num" data-count="12" data-suffix="+">0</div>
+          <div class="stat-label">Years Engineering Leadership</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="8">0</div>
+          <div class="stat-label">Industries Served</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">₹0</div>
+          <div class="stat-label">VC Funding — Proudly Bootstrapped</div>
+        </div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num" data-count="12" data-suffix="+">0</div>
-        <div class="stat-label">Years Engineering Leadership</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" data-count="8">0</div>
-        <div class="stat-label">Industries Served</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">₹0</div>
-        <div class="stat-label">VC Funding — Proudly Bootstrapped</div>
-      </div>
+
+    <div class="hero-illustration" aria-hidden="true">
+      <svg viewBox="0 0 600 560" xmlns="http://www.w3.org/2000/svg">
+        <!-- soft color blobs -->
+        <circle class="illo-blob" cx="150" cy="120" r="90" fill="#f9bb0f" opacity="0.16" />
+        <circle class="illo-blob" cx="480" cy="440" r="110" fill="#1e64ba" opacity="0.10" />
+        <circle class="illo-blob" cx="500" cy="100" r="70" fill="#349f5a" opacity="0.12" />
+
+        <!-- gauge (top-left) -->
+        <g class="illo-card-2">
+          <path d="M40 210 A70 70 0 0 1 100 141" fill="none" stroke="#f9bb0f" stroke-width="16" stroke-linecap="round" />
+          <path d="M100 141 A70 70 0 0 1 150 165" fill="none" stroke="#349f5a" stroke-width="16" stroke-linecap="round" />
+          <path d="M150 165 A70 70 0 0 1 160 210" fill="none" stroke="#1e64ba" stroke-width="16" stroke-linecap="round" />
+          <circle cx="90" cy="210" r="12" fill="#0f172a" />
+          <line class="illo-gauge-needle" x1="90" y1="210" x2="60" y2="165" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+        </g>
+
+        <!-- code panel (bottom-left) -->
+        <g class="illo-card-1">
+          <rect x="30" y="330" width="230" height="150" rx="14" fill="#0f172a" />
+          <text x="60" y="378" font-family="monospace" font-size="26" fill="#ffffff" font-weight="700">&lt;/&gt;</text>
+          <rect x="60" y="400" width="120" height="8" rx="4" fill="#349f5a" />
+          <rect x="60" y="418" width="160" height="8" rx="4" fill="#f9bb0f" />
+          <rect x="60" y="436" width="90" height="8" rx="4" fill="#ea4438" />
+          <rect x="60" y="454" width="140" height="8" rx="4" fill="#ea4438" />
+        </g>
+
+        <!-- person -->
+        <g class="illo-person">
+          <ellipse cx="330" cy="510" rx="120" ry="18" fill="#1e64ba" opacity="0.08" />
+          <!-- body -->
+          <path d="M255 500 L255 330 Q255 270 330 270 Q405 270 405 330 L405 500 Z" fill="#1e64ba" />
+          <rect x="300" y="270" width="60" height="70" fill="#f1f5f9" />
+          <!-- head -->
+          <circle cx="330" cy="215" r="52" fill="#ffffff" stroke="#0f172a" stroke-width="4" />
+          <path d="M282 200 Q285 140 330 145 Q385 130 378 190 Q368 165 340 168 Q300 168 282 200 Z" fill="#0f172a" />
+          <circle cx="312" cy="218" r="5" fill="#0f172a" />
+          <circle cx="352" cy="218" r="5" fill="#0f172a" />
+          <path d="M312 240 Q330 252 350 240" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" />
+          <!-- laptop -->
+          <rect x="255" y="400" width="150" height="100" rx="8" fill="#94a3b8" />
+          <rect x="265" y="408" width="130" height="72" rx="4" fill="#e2e8f0" />
+          <circle cx="330" cy="444" r="16" fill="#ffffff" />
+        </g>
+
+        <!-- checkmark card (upper right) -->
+        <g class="illo-card-1">
+          <rect x="400" y="110" width="180" height="80" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+          <circle cx="440" cy="150" r="22" fill="#349f5a" />
+          <path d="M430 150 L438 158 L452 140" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="475" y="138" width="85" height="8" rx="4" fill="#0f172a" opacity="0.7" />
+          <rect x="475" y="154" width="60" height="8" rx="4" fill="#0f172a" opacity="0.35" />
+        </g>
+
+        <!-- checkmark card (mid right) -->
+        <g class="illo-card-2">
+          <rect x="420" y="240" width="180" height="80" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+          <circle cx="460" cy="280" r="22" fill="#1e64ba" />
+          <path d="M450 280 L458 288 L472 270" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="495" y="268" width="85" height="8" rx="4" fill="#0f172a" opacity="0.7" />
+          <rect x="495" y="284" width="60" height="8" rx="4" fill="#0f172a" opacity="0.35" />
+        </g>
+
+        <!-- clock (bottom right) -->
+        <g class="illo-card-2">
+          <circle cx="500" cy="430" r="60" fill="#ffffff" stroke="#0f172a" stroke-width="5" />
+          <line class="illo-clock-hand-hr" x1="500" y1="430" x2="500" y2="398" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+          <line class="illo-clock-hand-min" x1="500" y1="430" x2="528" y2="430" stroke="#ea4438" stroke-width="4" stroke-linecap="round" />
+          <circle cx="500" cy="430" r="6" fill="#0f172a" />
+        </g>
+
+        <!-- sparkles -->
+        <g class="illo-sparkle-a" fill="#1e64ba">
+          <path d="M120 320 L126 336 L142 342 L126 348 L120 364 L114 348 L98 342 L114 336 Z" />
+        </g>
+        <g class="illo-sparkle-b" fill="#ea4438">
+          <path d="M560 340 L564 350 L574 354 L564 358 L560 368 L556 358 L546 354 L556 350 Z" />
+        </g>
+        <g class="illo-sparkle-c" fill="#f9bb0f">
+          <path d="M420 60 L424 70 L434 74 L424 78 L420 88 L416 78 L406 74 L416 70 Z" />
+        </g>
+      </svg>
     </div>
   </section>
 
@@ -752,20 +920,20 @@ permalink: /home
     </div>
 
     <div class="risk-free-grid reveal reveal-stagger">
-      <div class="risk-free-card">
+      <div class="risk-free-card rf-red">
         <div class="risk-free-icon">💰</div>
         <h3 class="risk-free-name">Cost-Effective by Design</h3>
         <p class="risk-free-desc">We price our engagements to stay well within reach of small and mid-sized businesses, so your IT investment never feels like a burden on the business.</p>
       </div>
 
-      <div class="risk-free-card featured">
+      <div class="risk-free-card rf-yellow featured">
         <span class="risk-free-badge">Zero Risk</span>
         <div class="risk-free-icon">🆓</div>
         <h3 class="risk-free-name">Try the Custom Solution, Free</h3>
         <p class="risk-free-desc">Before you commit, we build and run a working version of your custom solution at no cost — so you can see the real value before you pay for it.</p>
       </div>
 
-      <div class="risk-free-card">
+      <div class="risk-free-card rf-green">
         <div class="risk-free-icon">🤝</div>
         <h3 class="risk-free-name">No Long-Term Lock-In</h3>
         <p class="risk-free-desc">If it's the right fit, we continue the partnership. If it isn't, walking away is simple — no lengthy contracts, no exit penalties.</p>

@@ -12,12 +12,17 @@
   --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
   --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   
-  /* Zoho-inspired Corporate Accents */
-  --accent-blue: #1e62c9;
-  --accent-red: #ea4335;
-  --accent-green: #34a853;
-  --accent-yellow: #fbbc05;
-  --accent-purple: #6366f1;
+  /* Brand Accents — sampled directly from the InfiniteXero logo (X-e-r-o) */
+  --accent-blue: #1e64ba;
+  --accent-red: #ea4438;
+  --accent-green: #349f5a;
+  --accent-yellow: #f9bb0f;
+
+  /* Vibrant gradients built entirely from the 4 brand colors */
+  --grad-primary: linear-gradient(120deg, var(--accent-blue), var(--accent-green));
+  --grad-warm: linear-gradient(120deg, var(--accent-red), var(--accent-yellow));
+  --grad-fresh: linear-gradient(120deg, var(--accent-green), var(--accent-blue));
+  --grad-full: linear-gradient(100deg, var(--accent-red) 0%, var(--accent-yellow) 33%, var(--accent-green) 66%, var(--accent-blue) 100%);
 }
 
 *, *::before, *::after {
@@ -90,16 +95,18 @@ nav {
 }
 
 .nav-cta {
-  background: var(--accent-blue);
+  background: var(--grad-warm);
   color: #ffffff !important;
   padding: 0.55rem 1.3rem;
   border-radius: 6px;
   font-weight: 600 !important;
-  transition: opacity 0.2s !important;
+  transition: transform 0.2s !important, box-shadow 0.2s !important;
+  box-shadow: 0 6px 16px -6px rgba(234, 68, 56, 0.5);
 }
 
 .nav-cta:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -6px rgba(249, 187, 15, 0.55);
 }
 
 /* ── MOBILE MENU ── */
@@ -207,7 +214,8 @@ section {
 
 /* ── BUTTONS ── */
 .btn-primary {
-  background: var(--accent-blue);
+  background: var(--grad-warm);
+  background-size: 160% 160%;
   color: #ffffff;
   padding: 0.85rem 2rem;
   border-radius: 6px;
@@ -216,12 +224,19 @@ section {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.1s;
+  transition: background-position 0.5s ease, transform 0.15s ease, box-shadow 0.25s ease;
   display: inline-block;
+  box-shadow: 0 8px 20px -8px rgba(234, 68, 56, 0.55);
 }
 
 .btn-primary:hover {
-  opacity: 0.95;
+  background-position: 100% 100%;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(249, 187, 15, 0.55);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-outline {
@@ -266,4 +281,72 @@ footer .footer-fineprint {
   font-size: 0.8rem;
   margin-top: 0.75rem;
   opacity: 0.8;
+}
+
+/* ── SHARED VIBRANT PAGE-HERO DECORATION ── */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes deco-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, -18px) rotate(6deg); }
+}
+
+@keyframes deco-float-rev {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-12px, -14px) rotate(-8deg); }
+}
+
+@keyframes deco-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 65% at 12% 20%, rgba(234, 67, 53, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 65% at 88% 15%, rgba(30, 98, 201, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 80% 90%, rgba(52, 168, 83, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 50% at 10% 85%, rgba(251, 188, 5, 0.10) 0%, transparent 60%),
+    var(--bg-secondary) !important;
+}
+
+.page-hero .deco-badge {
+  position: absolute;
+  font-size: 1.6rem;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: var(--card-shadow-hover);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page-hero .deco-badge.d1 { top: 14%; left: 8%; color: var(--accent-red); animation: deco-float 6s ease-in-out infinite; }
+.page-hero .deco-badge.d2 { top: 62%; left: 15%; color: var(--accent-yellow); animation: deco-float-rev 7s ease-in-out infinite; }
+.page-hero .deco-badge.d3 { top: 20%; right: 10%; color: var(--accent-green); animation: deco-float-rev 5.5s ease-in-out infinite; }
+.page-hero .deco-badge.d4 { top: 66%; right: 8%; color: var(--accent-blue); animation: deco-float 6.5s ease-in-out infinite; }
+
+.page-hero h1,
+.page-hero p {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  background: var(--grad-full);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 768px) {
+  .page-hero .deco-badge { display: none; }
 }
